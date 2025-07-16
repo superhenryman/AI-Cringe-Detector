@@ -13,7 +13,7 @@ EXTENSIONS = {"png", "jpg", "txt"}
 
 def generate_response_text(prompt):
     try:
-        response = model.generate_content(f"You are inside a website where you rate how cringe text is. Rate the following text on a scale of 1 to 100%, where 1 is extremely cringe and 100 is not cringe: {prompt}")
+        response = model.generate_content(prompt)
         return response.text
     except Exception as e:
         return f"Error: {str(e)}"
