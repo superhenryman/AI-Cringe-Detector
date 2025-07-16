@@ -26,7 +26,7 @@ form.addEventListener("submit", async (e) => {
         }
 
         const result = await response.json();
-        alert('Success:', result);
+        alert(`You are: ${result.response} cringe. Why? ${result.reason}`);
     } catch (error) {
         console.error('Error:', error);
     }
