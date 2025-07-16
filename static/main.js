@@ -43,6 +43,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           img.style.maxWidth = '100%'; 
           img.style.height = 'auto';
           img.style.display = 'block';
+          img.id = "img";
           const imagePreview = document.getElementById('img');
           imagePreview.innerHTML = ''; 
           imagePreview.appendChild(img); 
