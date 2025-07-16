@@ -47,7 +47,6 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           imagePreview.innerHTML = ''; 
           imagePreview.appendChild(img); 
           imagePreview.style.display = 'block';
-          imagePreview.src = e.target.result;
       };
       reader.readAsDataURL(file);
   }
