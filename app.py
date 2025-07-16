@@ -21,7 +21,7 @@ def generate_response_text(prompt):
 @app.route("/", methods=["GET"])
 def home(): return render_template("index.html")
 
-@app.route("/cringeometer", methods=["POST"])
+@app.route("/cringeornot", methods=["POST"])
 def cringeometer():
     if "file" not in request.files:
         return jsonify({"error": "No file part"}), 400

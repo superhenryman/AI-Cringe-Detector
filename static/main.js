@@ -15,7 +15,7 @@ form.addEventListener("submit", async (e) => {
         return;
     }
     try {
-        const response = await fetch('/submit', {
+        const response = await fetch('/cringeornot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
