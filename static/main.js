@@ -33,22 +33,20 @@ form.addEventListener("submit", async (e) => {
 });
 
 document.getElementById('fileInput').addEventListener('change', function(event) {
-  const file = event.target.files[0];
-  if (file && file.type.startsWith('image')) {
-      const reader = new FileReader();
-
-      reader.onload = function(e) {
-          const img = document.createElement('img');
-          img.src = e.target.result; 
-          img.style.maxWidth = '100%'; 
-          img.style.height = 'auto';
-          img.style.display = 'block';
-          img.id = "img";
-          const imagePreview = document.getElementById('img');
-          imagePreview.innerHTML = ''; 
-          imagePreview.appendChild(img); 
-          imagePreview.style.display = 'block';
-      };
-      reader.readAsDataURL(file);
-  }
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('image')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.maxWidth = '100%'; 
+            img.style.height = 'auto';
+            img.style.display = 'block'; 
+            const imagePreview = document.getElementById('img'); 
+            imagePreview.innerHTML = '';
+            imagePreview.appendChild(img);
+            imagePreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
 });
