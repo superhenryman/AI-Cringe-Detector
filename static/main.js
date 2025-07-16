@@ -15,6 +15,15 @@ form.addEventListener("submit", async (e) => {
         alert('Please upload a valid file type: .txt, .png, or .jpg');
         return;
     }
+    if (["image/png", "image/jpeg"].includes(file.type)) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.alt = 'Uploaded Image';
+        img.style.maxWidth = '100%';
+        img.style.maxHeight = '300px';
+        document.getElementById('imagePreview').innerHTML = '';
+        document.getElementById('imagePreview').appendChild(img);
+    }
     try {
         const response = await fetch('/cringeornot', {
             method: 'POST',
