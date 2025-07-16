@@ -42,12 +42,13 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
             img.style.maxWidth = '100%'; 
             img.style.height = 'auto';
             img.style.display = 'block'; 
+            img.width = "200";
+            img.height = "200";
             const imagePreview = document.getElementById('img'); 
             imagePreview.innerHTML = '';
             imagePreview.appendChild(img);
             imagePreview.style.display = 'block';
-            imagePreview.width = "200";
-            imagePreview.height = "200";
+
         };
         reader.readAsDataURL(file);
     }
