@@ -15,15 +15,6 @@ form.addEventListener("submit", async (e) => {
         alert('Please upload a valid file type: .txt, .png, or .jpg');
         return;
     }
-    if (["image/png", "image/jpeg"].includes(file.type)) {
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
-        img.alt = 'Uploaded Image';
-        img.style.maxWidth = '100%';
-        img.style.maxHeight = '300px';
-        document.getElementById('imagePreview').innerHTML = '';
-        document.getElementById('imagePreview').appendChild(img);
-    }
     try {
         const response = await fetch('/cringeornot', {
             method: 'POST',
@@ -39,4 +30,25 @@ form.addEventListener("submit", async (e) => {
     } catch (error) {
         console.error('Error:', error);
     }
+});
+
+document.getElementById('fileInput').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file && file.type.startsWith('image')) {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result; 
+          img.style.maxWidth = '100%'; 
+          img.style.height = 'auto';
+          img.style.display = 'block';
+          const imagePreview = document.getElementById('img');
+          imagePreview.innerHTML = ''; 
+          imagePreview.appendChild(img); 
+          imagePreview.style.display = 'block';
+          imagePreview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+  }
 });
