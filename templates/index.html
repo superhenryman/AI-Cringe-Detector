@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Cringe Detector</title>
-</head>
-<body>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>AI Cringe Detector</h1>
-        <p>Is your media cringe? Find out now!</p>
-        <form id="form">
-            <input type="file" name="file" value="media" id="fileInput" accept=".png, .jpg, .txt">
-            <input type="submit" value="Submit" id="submit">
-        </form>
-        <div id="img" style="display: none;">
+      <h1>AI Cringe Detector</h1>
+      <p>Is your media cringe? Find out now!</p>
+
+      <form id="form">
+        <input
+          type="file"
+          id="fileInput"
+          name="file"
+          accept=".png, .jpg, .txt"
+        />
+        <input type="submit" value="Submit" />
+      </form>
+
+      <div id="progressBar"><div id="progress"></div></div>
+
+      <div id="img"></div>
+      <canvas id="cringeMeter" width="300" height="300"></canvas>
+      <p id="cringeReason"></p>
     </div>
-    <script src="/static/main.js"></script>
-</body>
+    <p>Made by superhenryman, styling by jerry</p>
+    <script src="../static/main.js"></script>
+  </body>
 </html>
