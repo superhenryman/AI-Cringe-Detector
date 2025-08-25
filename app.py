@@ -5,7 +5,7 @@ import PIL.Image
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-API_KEY = os.getenv("API_KEY") or "d"
+API_KEY = os.getenv("API_KEY")
 if not API_KEY: raise ValueError("API_KEY environment variable is not set.")
 app = Flask(__name__)
 limiter = Limiter(
