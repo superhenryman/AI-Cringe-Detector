@@ -2,10 +2,17 @@ from flask import Flask, request, render_template, jsonify
 import os
 import google.generativeai as genai
 import PIL.Image
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("API_KEY") or "d"
 if not API_KEY: raise ValueError("API_KEY environment variable is not set.")
 app = Flask(__name__)
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["200 per day", "50 per hour"] 
+)
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-2.5-flash")
 EXTENSIONS = {"png", "jpg", "txt"}
@@ -22,6 +29,7 @@ def generate_response_text(prompt):
 def home(): return render_template("index.html")
 
 @app.route("/cringeornot", methods=["POST"])
+@limiter.limit("10 per minute")
 def cringeometer():
     if "file" not in request.files:
         return jsonify({"error": "No file part"}), 400
