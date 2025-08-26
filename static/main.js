@@ -4,23 +4,24 @@ const progress = document.getElementById("progress");
 const reasonEl = document.getElementById("cringeReason");
 let submitted = false;
 form.addEventListener("submit", async (e) => {
+  e.preventDefault();
   if (submitted) {
     alert("You have already submitted. Stop and wait.");
     return;
   }
   submitted = true;
-  e.preventDefault();
   const formData = new FormData(form);
   const file = formData.get("file");
-
   if (!(file instanceof File) || file.size === 0) {
     alert("Please select a file to upload.");
+    submitted = false;
     return;
   }
 
   const allowedTypes = ["text/plain", "image/png", "image/jpeg"];
   if (!allowedTypes.includes(file.type)) {
     alert("Please upload a valid file type: .txt, .png, or .jpg");
+    submitted = false;
     return;
   }
 
