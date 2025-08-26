@@ -2,8 +2,13 @@ const form = document.getElementById("form");
 const progressBar = document.getElementById("progressBar");
 const progress = document.getElementById("progress");
 const reasonEl = document.getElementById("cringeReason");
-
+let submitted = false;
 form.addEventListener("submit", async (e) => {
+  if (submitted) {
+    alert("You have already submitted. Stop and wait.");
+    return;
+  }
+  submitted = true;
   e.preventDefault();
   const formData = new FormData(form);
   const file = formData.get("file");
@@ -40,7 +45,7 @@ form.addEventListener("submit", async (e) => {
     if (!response.ok) throw new Error("Upload failed.");
 
     const result = await response.json();
-
+    submitted = false;
     const percent = parseFloat(result.response);
     const reason = result.reason;
 
